@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Market Research For Local Businesses — Case File No. 008</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0b1c33; --navy-deep:#071322;
+    --gold:#c9a24b; --gold-soft:#e4c778;
+    --teal:#1f7a72;
+    --olive:#a68a3d; --olive-soft:#d4b96a;
+    --ivory:#f3ede0; --slate:#8a97a8;
+    --rule:rgba(243,237,224,0.14);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;background:#050c17;}
+  body{ font-family:'IBM Plex Sans', sans-serif; color:var(--ivory); display:flex; justify-content:center; padding:40px 16px; }
+  .sheet{
+    width:100%; max-width:640px;
+    background:
+      radial-gradient(1200px 500px at 15% -10%, rgba(166,138,61,0.22), transparent 60%),
+      linear-gradient(180deg, var(--navy) 0%, var(--navy-deep) 100%);
+    border:1px solid rgba(201,162,75,0.35);
+    position:relative; overflow:hidden;
+    box-shadow: 0 40px 80px -30px rgba(0,0,0,0.7);
+  }
+  .sheet::before{
+    content:""; position:absolute; inset:0;
+    background-image: repeating-linear-gradient(to bottom, transparent 0px, transparent 37px, rgba(243,237,224,0.035) 38px);
+    pointer-events:none;
+  }
+  .inner{ position:relative; padding:34px 30px 30px; }
+  .masthead{ display:flex; justify-content:space-between; align-items:baseline; border-bottom:1px solid var(--rule); padding-bottom:14px; }
+  .brand{ font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:var(--gold-soft); }
+  .brand span{ color:var(--slate); }
+  .casefile{ font-family:'IBM Plex Mono', monospace; font-size:10.5px; letter-spacing:0.1em; color:var(--slate); text-transform:uppercase; }
+  .title-block{ margin-top:26px; margin-bottom:8px; }
+  .eyebrow{ font-family:'IBM Plex Mono', monospace; font-size:10.5px; letter-spacing:0.22em; text-transform:uppercase; color:var(--olive-soft); margin-bottom:10px; }
+  .eyebrow::before{ content:"— "; color:var(--gold); }
+  h1{ font-family:'Fraunces', serif; font-weight:500; font-size:36px; line-height:1.08; margin:0 0 10px; letter-spacing:-0.01em; color:var(--ivory); }
+  h1 em{ font-style:italic; font-weight:300; color:var(--gold-soft); }
+  .subject-row{ display:flex; justify-content:space-between; align-items:center; font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--slate); margin-top:6px; }
+  .subject-row .handle{ color:var(--ivory); font-weight:500; }
+
+  .hero{ margin:28px 0 8px; padding:22px; border-top:1px solid var(--rule); border-bottom:1px solid var(--rule);
+         display:flex; justify-content:space-between; align-items:center; gap:18px; }
+  .hero-role{ font-family:'Fraunces', serif; font-size:22px; font-weight:600; color:var(--ivory); line-height:1.25; }
+  .hero-since{ font-family:'IBM Plex Mono', monospace; font-size:10.5px; letter-spacing:0.12em; text-transform:uppercase; color:var(--olive-soft); margin-top:8px; }
+  .hero-tags{ display:flex; flex-direction:column; gap:8px; align-items:flex-end; }
+  .tag{ font-family:'IBM Plex Mono', monospace; font-size:10px; color:var(--ivory); background:rgba(243,237,224,0.06); border:1px solid var(--rule); padding:5px 10px; border-radius:20px; white-space:nowrap; }
+
+  .ledger-head{ font-family:'IBM Plex Mono', monospace; font-size:10.5px; letter-spacing:0.18em; text-transform:uppercase; color:var(--slate); margin:26px 0 4px; }
+  .line-item{ display:grid; grid-template-columns:34px 1fr; align-items:start; gap:14px; padding:16px 0; border-bottom:1px solid var(--rule); }
+  .line-item:last-of-type{ border-bottom:none; }
+  .li-num{ font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--gold); padding-top:2px; }
+  .li-body .li-title{ font-size:14.5px; font-weight:600; color:var(--ivory); margin-bottom:6px; }
+  .li-body .li-desc{ font-size:12.5px; color:var(--slate); line-height:1.6; }
+  .skill-chips{ display:flex; flex-wrap:wrap; gap:8px; margin-top:10px; }
+  .chip{ font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:var(--ivory); background:rgba(243,237,224,0.06); border:1px solid var(--rule); padding:5px 9px; border-radius:3px; white-space:nowrap; }
+
+  .verdict{ margin-top:26px; padding:20px 20px; background:rgba(201,162,75,0.06); border-left:2px solid var(--gold); }
+  .verdict-label{ font-family:'IBM Plex Mono', monospace; font-size:10px; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold); margin-bottom:8px; }
+  .verdict p{ margin:0; font-family:'Fraunces', serif; font-style:italic; font-weight:400; font-size:16.5px; line-height:1.5; color:var(--ivory); }
+
+  .footer{ margin-top:28px; padding-top:16px; border-top:1px solid var(--rule); display:flex; justify-content:space-between; align-items:flex-end; }
+  .footer-brand{ font-family:'Fraunces', serif; font-size:17px; font-weight:600; color:var(--ivory); }
+  .footer-tag{ font-family:'IBM Plex Mono', monospace; font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:var(--teal); margin-top:3px; }
+  .footer-services{ font-family:'IBM Plex Mono', monospace; font-size:10px; color:var(--slate); text-align:right; line-height:1.6; }
+
+  @media (max-width:420px){
+    .inner{ padding:26px 18px 22px; } h1{ font-size:28px; }
+    .hero{ flex-direction:column; align-items:flex-start; }
+    .hero-tags{ align-items:flex-start; flex-direction:row; flex-wrap:wrap; }
+  }
+</style>
+</head>
+<body>
+<div class="sheet">
+  <div class="inner">
+
+    <div class="masthead">
+      <div class="brand">AMMYERA <span>· SCALE &amp; STORY</span></div>
+      <div class="casefile">Case File No. 008</div>
+    </div>
+
+    <div class="title-block">
+      <div class="eyebrow">Business Analyst Project</div>
+      <h1>Pricing decisions,<br><em>backed by evidence.</em></h1>
+      <div class="subject-row">
+        <span>Project: <span class="handle">Market Research For Local Businesses</span></span>
+        <span>Independent build</span>
+      </div>
+    </div>
+
+    <div class="hero">
+      <div>
+        <div class="hero-role">Customer &amp; Competitor Research</div>
+        <div class="hero-since">Market opportunity → pricing &amp; marketing decisions</div>
+      </div>
+      <div class="hero-tags">
+        <div class="tag">Market Research</div>
+        <div class="tag">Business Analysis</div>
+      </div>
+    </div>
+
+    <div class="ledger-head">Line Items</div>
+
+    <div class="line-item">
+      <div class="li-num">01</div>
+      <div class="li-body">
+        <div class="li-title">Customer research</div>
+        <div class="li-desc">Conducted customer research to identify unmet market opportunities for local businesses.</div>
+      </div>
+    </div>
+
+    <div class="line-item">
+      <div class="li-num">02</div>
+      <div class="li-body">
+        <div class="li-title">Competitor research</div>
+        <div class="li-desc">Analyzed competitors to surface gaps and inform better pricing and marketing decisions.</div>
+      </div>
+    </div>
+
+    <div class="line-item">
+      <div class="li-num">03</div>
+      <div class="li-body">
+        <div class="li-title">Skillset demonstrated</div>
+        <div class="li-desc">The core toolkit this project put to work.</div>
+        <div class="skill-chips">
+          <div class="chip">Market Research</div>
+          <div class="chip">Business Analysis</div>
+          <div class="chip">Communication</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="verdict">
+      <div class="verdict-label">Project Summary</div>
+      <p>Two research tracks, one outcome: a local business pricing and marketing on evidence, not instinct.</p>
+    </div>
+
+    <div class="footer">
+      <div>
+        <div class="footer-brand">AmmyEra</div>
+        <div class="footer-tag">Scale &amp; Story</div>
+      </div>
+      <div class="footer-services">
+        Business Analyst · Data Analyst<br>
+        Social Media Management
+      </div>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>

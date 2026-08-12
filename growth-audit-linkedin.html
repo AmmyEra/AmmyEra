@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LinkedIn Growth Audit — Case File No. 003</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0b1c33;
+    --navy-deep:#071322;
+    --gold:#c9a24b;
+    --gold-soft:#e4c778;
+    --teal:#1f7a72;
+    --ivory:#f3ede0;
+    --slate:#8a97a8;
+    --rule:rgba(243,237,224,0.14);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;background:#050c17;}
+  body{
+    font-family:'IBM Plex Sans', sans-serif;
+    color:var(--ivory);
+    display:flex;
+    justify-content:center;
+    padding:40px 16px;
+  }
+  .sheet{
+    width:100%;
+    max-width:640px;
+    background:
+      radial-gradient(1200px 500px at 85% -10%, rgba(31,122,114,0.28), transparent 60%),
+      linear-gradient(180deg, var(--navy) 0%, var(--navy-deep) 100%);
+    border:1px solid rgba(201,162,75,0.35);
+    position:relative;
+    overflow:hidden;
+    box-shadow: 0 40px 80px -30px rgba(0,0,0,0.7);
+  }
+  .sheet::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background-image: repeating-linear-gradient(
+      to bottom,
+      transparent 0px,
+      transparent 37px,
+      rgba(243,237,224,0.035) 38px
+    );
+    pointer-events:none;
+  }
+  .inner{
+    position:relative;
+    padding:34px 30px 30px;
+  }
+
+  .masthead{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    border-bottom:1px solid var(--rule);
+    padding-bottom:14px;
+  }
+  .brand{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    color:var(--gold-soft);
+  }
+  .brand span{color:var(--slate);}
+  .casefile{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10.5px;
+    letter-spacing:0.1em;
+    color:var(--slate);
+    text-transform:uppercase;
+  }
+
+  .title-block{
+    margin-top:26px;
+    margin-bottom:8px;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10.5px;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    color:var(--teal);
+    margin-bottom:10px;
+  }
+  .eyebrow::before{content:"— "; color:var(--gold);}
+  h1{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    font-size:36px;
+    line-height:1.08;
+    margin:0 0 10px;
+    letter-spacing:-0.01em;
+    color:var(--ivory);
+  }
+  h1 em{
+    font-style:italic;
+    font-weight:300;
+    color:var(--gold-soft);
+  }
+  .subject-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--slate);
+    margin-top:6px;
+  }
+  .subject-row .handle{color:var(--ivory); font-weight:500;}
+
+  /* Hero: growth curve */
+  .hero{
+    margin:28px 0 8px;
+    padding:22px 22px 18px;
+    border-top:1px solid var(--rule);
+    border-bottom:1px solid var(--rule);
+  }
+  .hero-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    margin-bottom:14px;
+  }
+  .hero-num{
+    font-family:'Fraunces', serif;
+    font-size:44px;
+    font-weight:600;
+    color:var(--ivory);
+    line-height:1;
+  }
+  .hero-cap{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--gold-soft);
+    margin-top:6px;
+  }
+  .hero-side{text-align:right;}
+  .hero-side .reach-num{
+    font-family:'Fraunces', serif;
+    font-size:22px;
+    font-weight:600;
+    color:var(--ivory);
+  }
+  .hero-side .reach-cap{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:9.5px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--slate);
+    margin-top:3px;
+  }
+  .chart-wrap{position:relative;}
+  .chart-axis{
+    display:flex;
+    justify-content:space-between;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:9.5px;
+    color:var(--slate);
+    margin-top:6px;
+  }
+
+  .ledger-head{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10.5px;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--slate);
+    margin:26px 0 4px;
+  }
+  .line-item{
+    display:grid;
+    grid-template-columns:34px 1fr auto;
+    align-items:start;
+    gap:14px;
+    padding:16px 0;
+    border-bottom:1px solid var(--rule);
+  }
+  .line-item:last-of-type{border-bottom:none;}
+  .li-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--gold);
+    padding-top:2px;
+  }
+  .li-body .li-title{
+    font-size:14.5px;
+    font-weight:600;
+    color:var(--ivory);
+    margin-bottom:6px;
+  }
+  .li-body .li-desc{
+    font-size:12.5px;
+    color:var(--slate);
+    line-height:1.55;
+  }
+  .stat-chips{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-top:10px;
+  }
+  .chip{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10.5px;
+    color:var(--ivory);
+    background:rgba(243,237,224,0.06);
+    border:1px solid var(--rule);
+    padding:5px 9px;
+    border-radius:3px;
+    white-space:nowrap;
+  }
+  .chip b{color:var(--gold-soft); font-weight:600;}
+  .li-figure{
+    font-family:'Fraunces', serif;
+    font-size:20px;
+    font-weight:600;
+    color:var(--gold-soft);
+    white-space:nowrap;
+    text-align:right;
+    padding-top:2px;
+  }
+
+  .post-card{
+    margin-top:10px;
+    padding:14px 14px;
+    background:rgba(31,122,114,0.08);
+    border:1px solid rgba(31,122,114,0.3);
+    border-radius:4px;
+  }
+  .post-title{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-size:15px;
+    color:var(--ivory);
+    margin-bottom:8px;
+  }
+
+  .verdict{
+    margin-top:26px;
+    padding:20px 20px;
+    background:rgba(201,162,75,0.06);
+    border-left:2px solid var(--gold);
+  }
+  .verdict-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10px;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin-bottom:8px;
+  }
+  .verdict p{
+    margin:0;
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-weight:400;
+    font-size:16.5px;
+    line-height:1.5;
+    color:var(--ivory);
+  }
+
+  .footer{
+    margin-top:28px;
+    padding-top:16px;
+    border-top:1px solid var(--rule);
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+  }
+  .footer-brand{
+    font-family:'Fraunces', serif;
+    font-size:17px;
+    font-weight:600;
+    color:var(--ivory);
+  }
+  .footer-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--teal);
+    margin-top:3px;
+  }
+  .footer-services{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10px;
+    color:var(--slate);
+    text-align:right;
+    line-height:1.6;
+  }
+
+  @media (max-width:420px){
+    .inner{padding:26px 18px 22px;}
+    h1{font-size:28px;}
+    .hero-num{font-size:36px;}
+  }
+</style>
+</head>
+<body>
+<div class="sheet">
+  <div class="inner">
+
+    <div class="masthead">
+      <div class="brand">AMMYERA <span>· SCALE &amp; STORY</span></div>
+      <div class="casefile">Case File No. 003</div>
+    </div>
+
+    <div class="title-block">
+      <div class="eyebrow">LinkedIn Growth Audit</div>
+      <h1>One post,<br><em>a career-sized ripple.</em></h1>
+      <div class="subject-row">
+        <span>Profile: <span class="handle">Amatullah Hathi</span></span>
+        <span>Past 90 days</span>
+      </div>
+    </div>
+
+    <div class="hero">
+      <div class="hero-top">
+        <div>
+          <div class="hero-num">40,222</div>
+          <div class="hero-cap">Impressions · Cumulative</div>
+        </div>
+        <div class="hero-side">
+          <div class="reach-num">17,935</div>
+          <div class="reach-cap">Members Reached</div>
+        </div>
+      </div>
+      <div class="chart-wrap">
+        <svg width="100%" height="90" viewBox="0 0 560 90" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#e4c778" stop-opacity="0.35"/>
+              <stop offset="100%" stop-color="#1f7a72" stop-opacity="0"/>
+            </linearGradient>
+            <linearGradient id="lineGrad" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#1f7a72"/>
+              <stop offset="100%" stop-color="#e4c778"/>
+            </linearGradient>
+          </defs>
+          <polygon points="0,86 10,86 40,85 90,84 150,80 210,75 260,70 300,66 340,62 380,58 410,54 430,40 445,20 460,4 560,4 560,90 0,90"
+                   fill="url(#areaGrad)"/>
+          <polyline points="0,86 10,86 40,85 90,84 150,80 210,75 260,70 300,66 340,62 380,58 410,54 430,40 445,20 460,4"
+                    fill="none" stroke="url(#lineGrad)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="460" cy="4" r="4.5" fill="#e4c778"/>
+        </svg>
+        <div class="chart-axis">
+          <span>Oct 21</span><span>Nov 20</span><span>Dec 19</span><span>Jan 18</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="ledger-head">Line Items</div>
+
+    <div class="line-item">
+      <div class="li-num">01</div>
+      <div class="li-body">
+        <div class="li-title">Profile momentum</div>
+        <div class="li-desc">The week the algorithm started paying attention.</div>
+        <div class="stat-chips">
+          <div class="chip"><b>388</b> profile views</div>
+          <div class="chip"><b>28,079</b> impressions · 7d</div>
+          <div class="chip"><b>32</b> search appearances</div>
+        </div>
+      </div>
+      <div class="li-figure"></div>
+    </div>
+
+    <div class="line-item">
+      <div class="li-num">02</div>
+      <div class="li-body">
+        <div class="li-title">The flagship post</div>
+        <div class="li-desc">Top performer of the window — one clear, useful idea, well-titled.</div>
+        <div class="post-card">
+          <div class="post-title">"Data Analyst vs Business Analyst (Real Difference)"</div>
+          <div class="stat-chips">
+            <div class="chip"><b>30,502</b> impressions</div>
+            <div class="chip"><b>18,652</b> members reached</div>
+            <div class="chip"><b>79</b> profile views</div>
+          </div>
+        </div>
+      </div>
+      <div class="li-figure"></div>
+    </div>
+
+    <div class="line-item">
+      <div class="li-num">03</div>
+      <div class="li-body">
+        <div class="li-title">Engagement → conversion</div>
+        <div class="li-desc">183 social engagements didn't stay likes — they turned into people.</div>
+        <div class="stat-chips">
+          <div class="chip"><b>132</b> reactions</div>
+          <div class="chip"><b>36</b> saves</div>
+          <div class="chip"><b>7</b> sends</div>
+          <div class="chip"><b>68</b> new followers</div>
+        </div>
+      </div>
+      <div class="li-figure">183</div>
+    </div>
+
+    <div class="verdict">
+      <div class="verdict-label">Audit Verdict</div>
+      <p>A single well-titled post out-earned a quarter of quiet posting. Repeatable topics, not luck, built this curve.</p>
+    </div>
+
+    <div class="footer">
+      <div>
+        <div class="footer-brand">AmmyEra</div>
+        <div class="footer-tag">Scale &amp; Story</div>
+      </div>
+      <div class="footer-services">
+        Business Analyst · Data Analyst<br>
+        Social Media Management
+      </div>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>
